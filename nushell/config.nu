@@ -34,3 +34,48 @@ def "nu-complete jj bookmark names" [] {
     --help(-h)                # Print help (see more with '--help')
   ]
 
+def run-hooks-for [stage: string, ...args] {
+    git add -A
+    
+    let hook_patterns = {
+        "commit": "pre-commit|prepare-commit-msg|commit-msg|post-commit",
+        "push": "pre-push|post-push", 
+        "merge": "pre-merge-commit|post-merge",
+        "rebase": "pre-rebase|post-rewrite"
+    }
+    
+    let pattern = $hook_patterns | get $stage
+    let hooks = get-git-hooks | where $it =~ $pattern
+    
+    for hook in $hooks {
+        let hooks_dir = (git rev-parse --git-dir) + "/.git/hooks"
+        let hook_path = $hooks_dir + "/" + $hook
+        
+        print $"🔄 Running ($hook)..."
+        ^$hook_path
+        
+        if $env.LAST_EXIT_CODE != 0 {
+            print $"❌ ($hook) failed"
+            return
+        } else {
+            print $"✅ ($hook) passed"
+        }
+    }
+    
+    # Return success so the calling function knows hooks passed
+    true
+}
+
+def jjc [...args] {
+    if (run-hooks-for "commit") {
+        print "🚀 All hooks passed, committing..."
+        ^jj commit -m ...$args
+    }
+}
+
+def jjp [...args] {
+    if (run-hooks-for "push") {
+        print "🚀 All hooks passed, pushing..."
+        ^jj push ...$args
+    }
+}
