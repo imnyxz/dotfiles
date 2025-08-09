@@ -7,5 +7,8 @@ $env.config = {
 	 osc133: true
 	 osc633: true
 	 reset_application_mode: true
-	}
+	},
+	buffer_editor: "nvim"
 }
+$env.EDITOR = "zeditor"
+
