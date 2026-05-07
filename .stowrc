@@ -1,4 +1,6 @@
 # Configuring targets: <where> <what>
+# Calling with 'stow <package>' e.g. 'stow zed'
 
 --target="/Users/offblck/Library/Application Support/nushell" nushell
 --target=/Users/offblck .aerospace.toml
+--target=/Users/offblck/.config/zed zed

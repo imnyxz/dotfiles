@@ -1,0 +1,56 @@
+{
+  "icon_theme": {
+    "mode": "light",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "agent_ui_font_size": 18.0,
+  "project_panel": {
+    "dock": "right"
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Dracula Solid"
+  },
+  "agent": {
+    "tool_permissions": {
+      "default": "allow"
+    },
+    "dock": "left",
+    "default_profile": "write",
+    "play_sound_when_agent_done": true,
+    "model_parameters": [],
+    "default_model": {
+      "provider": "openrouter",
+      "model": "minimax/minimax-m2.7"
+    }
+  },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "tab_size": 2,
+  "relative_line_numbers": "enabled",
+  "ui_font_family": "JetBrainsMono Nerd Font Mono",
+  "terminal": {
+    "dock": "bottom",
+    "font_family": "JetBrainsMono Nerd Font Mono"
+  },
+  "languages": {
+    "Rust": {
+      "tab_size": 4
+    }
+  }
+}
